@@ -17,6 +17,10 @@ int main()
     {
         show_day();
     }
+    else
+    {
+        test_map();
+    }
 
     return 0;
 }
