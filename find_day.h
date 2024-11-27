@@ -1,9 +1,10 @@
 // test.h
 #include <iostream>
 #include <map>
+#include <iomanip>
 using namespace std;
 
-class checkpoint
+class calendar_data
 {
 public:
     const int normal_yr = 365;
@@ -14,6 +15,21 @@ public:
         1980, 1984, 1988, 1992, 1996, 2000, 2004, 2008, 2012, 2016,
         2020, 2024, 2028, 2032, 2036, 2040, 2044, 2048, 2052, 2056,
         2060, 2064, 2068, 2072, 2076, 2080, 2084, 2088, 2092, 2096};
+
+    const string month[12] = {
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    };
 
     const string day[7] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
@@ -39,13 +55,14 @@ public:
         {2080, "MON"},
         {2090, "SUN"},
         {2100, "FRI"},
+
     };
 };
 
 void show_leap_year()
 {
 
-    checkpoint obj;
+    calendar_data obj;
     for (int i = 0; i < 49; i++)
     {
         cout << obj.all_leap_years[i] << endl;
@@ -54,7 +71,7 @@ void show_leap_year()
 
 void show_day()
 {
-    checkpoint obj;
+    calendar_data obj;
     for (int i = 0; i < 7; i++)
     {
         cout << obj.day[i] << " ";
@@ -64,9 +81,58 @@ void show_day()
 void test_map()
 {
 
-    checkpoint obj;
+    calendar_data obj;
     int year;
-    cout << "Enter the day you wish to check for the first day of the year: ";
+    cout << "Available range year 1900-2100\n"
+         << "Example 1910,1920...\n"
+         << "Invalid example 1911,2024...\n";
+    cout << "Enter the year you wish to check for the first day of the year: ";
     cin >> year;
-    cout << "The first day of year " << year << " is " << obj.newyear_checkpoint.at(year);
+    if (year % 10 == 0 && year >= 1900 && year <= 2100)
+    {
+
+        cout << "The first day of year " << year << " is " << obj.newyear_checkpoint.at(year);
+    }
+    else
+    {
+        cout << "Wrong format \n";
+    }
+}
+
+void showing_calendar()
+{
+    calendar_data obj;
+    bool month_done = false;
+    int month_count = 0;
+
+    for (int month_count; month_count < 12; month_count++)
+    {
+
+        cout << obj.month[month_count] << endl;
+        for (int i = 0; i < 7; i++)
+        {
+            cout
+                << obj.day[i] << " ";
+        }
+        cout << endl;
+        for (int x = 0; x <= 31; x++)
+        {
+            cout << x << setw(6) << " ";
+            if (x % 7 == 0)
+            {
+                cout << endl;
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+void make_space(int x = 1)
+{
+    for (int i = 0; i < x; i++)
+    {
+
+        cout << "\n";
+    }
 }
